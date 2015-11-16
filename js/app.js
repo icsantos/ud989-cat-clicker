@@ -31,7 +31,7 @@ var kittens = [
   }
 ];
 
-$('#img-kitten').click(function(e) {
+$('.img-kitten#kitten-doctorwho').click(function(e) {
   clicks++;
-  $("#click-counter").text(clicks);
+  $('.click-counter#kitten-doctorwho').text(clicks);
 });
