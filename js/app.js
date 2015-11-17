@@ -23,6 +23,7 @@ var $main = $('main');
  * @property {string} id - The id of the cute animal.
  * @property {string} name - The name of the cute animal.
  * @property {number} clicks - The number of clicks received by the cute animal.
+ * @property {string} html - The html for displaying the cute animal.
  */
  var CuteAnimal = function (obj) {
   'use strict';
@@ -30,14 +31,13 @@ var $main = $('main');
   this.id = obj.id;
   this.name = obj.name;
   this.clicks = 0;
-  this.render();
-  this.addEventHandler();
+  this.setHtml();
 };
 
 /**
  * Draw the cute animal on the screen.
  */
-CuteAnimal.prototype.render = function () {
+CuteAnimal.prototype.setHtml = function () {
   'use strict';
   var $img = $('<img>').attr({
     'class': 'img-animal',
@@ -45,13 +45,12 @@ CuteAnimal.prototype.render = function () {
     'alt': this.name,
     'src': this.sprite
   });
-  var $name = $('<span>').text('Clicks for ' + this.name + ': ');
   var $counter = $('<span>').text(0).attr({
     'class': 'click-counter',
     'id': this.id
   });
-  var $div = $('<div>').attr('class', 'set-container').append($img, $name, $counter);
-  $main.append($div);
+  var $name = $('<div>').text('Clicks for ' + this.name + ': ').append($counter);
+  this.html = $('<div>').attr('class', 'set-container').append($img, $name);
 };
 
 /**
@@ -59,7 +58,7 @@ CuteAnimal.prototype.render = function () {
  */
 CuteAnimal.prototype.addEventHandler = function () {
   var self = this;
-  $('.img-animal#' + this.id).click(function() {
+  $('.img-animal#' + this.id).on('click', function() {
     self.clicks++;
     $('.click-counter#' + this.id).text(self.clicks);
   });
@@ -138,7 +137,14 @@ Kitten.prototype.constructor = Kitten; // reset constructor from CuteAnimal to K
  * Array of instances of the Kitten class
  * @type {Kitten[]}
  */
-var cats = [], i;
+var cats = [],
+  html = [],
+  i;
 for (i = 0; i < TOTAL_KITTENS; i++) {
   cats.push(new Kitten(kittens[i]));
+  html.push(cats[i].html);
+}
+$main.append(html);
+for (i = 0; i < TOTAL_KITTENS; i++) {
+  cats[i].addEventHandler();
 }
