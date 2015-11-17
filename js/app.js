@@ -63,7 +63,7 @@ CuteAnimal.prototype.addEventHandler = function () {
     self.clicks++;
     $('.click-counter#' + this.id).text(self.clicks);
   });
-}
+};
 
 // --------------------------------------------------
 // Kitten class
