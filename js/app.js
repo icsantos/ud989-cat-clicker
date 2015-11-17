@@ -31,11 +31,7 @@ var $main = $('main');
   this.name = obj.name;
   this.clicks = 0;
   this.render();
-  var self = this;
-  $('.img-animal#' + this.id).click(function() {
-    self.clicks++;
-    $('.click-counter#' + this.id).text(self.clicks);
-  });
+  this.addEventHandler();
 };
 
 /**
@@ -57,6 +53,17 @@ CuteAnimal.prototype.render = function () {
   var $div = $('<div>').attr('class', 'set-container').append($img, $name, $counter);
   $main.append($div);
 };
+
+/**
+ * Add event handler for the cute animal.
+ */
+CuteAnimal.prototype.addEventHandler = function () {
+  var self = this;
+  $('.img-animal#' + this.id).click(function() {
+    self.clicks++;
+    $('.click-counter#' + this.id).text(self.clicks);
+  });
+}
 
 // --------------------------------------------------
 // Kitten class
