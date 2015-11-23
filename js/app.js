@@ -4,7 +4,7 @@
  * @type {number}
  * @default
  */
-var TOTAL_KITTENS = 2;
+var TOTAL_KITTENS = 5;
 
 /**
  * The container for displaying the cute animal
@@ -35,7 +35,7 @@ var $main = $('main');
 };
 
 /**
- * Draw the cute animal on the screen.
+ * HTML tags to draw the cute animal on the screen.
  */
 CuteAnimal.prototype.setHtml = function () {
   'use strict';
@@ -50,7 +50,7 @@ CuteAnimal.prototype.setHtml = function () {
     'id': this.id
   });
   var $name = $('<div>').text('Clicks for ' + this.name + ': ').append($counter);
-  this.html = $('<div>').attr('class', 'set-container').append($img, $name);
+  this.html = $('<div>').attr('class', 'set-container').append($name, $img);
 };
 
 /**
@@ -138,13 +138,17 @@ Kitten.prototype.constructor = Kitten; // reset constructor from CuteAnimal to K
  * @type {Kitten[]}
  */
 var cats = [],
-  html = [],
   i;
 for (i = 0; i < TOTAL_KITTENS; i++) {
   cats.push(new Kitten(kittens[i]));
-  html.push(cats[i].html);
 }
-$main.append(html);
-for (i = 0; i < TOTAL_KITTENS; i++) {
-  cats[i].addEventHandler();
-}
+
+var showSelected = function() {
+  var id = $('input[name="animal"]:checked').val();
+  var obj = $.grep(cats, function (e) { return e.id === id; })[0];
+  $('.click-container').html(obj.html);
+  obj.addEventHandler();
+};
+
+$('#form-container input[type=radio]').on('change', showSelected);
+
