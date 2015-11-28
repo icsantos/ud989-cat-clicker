@@ -1,5 +1,9 @@
 * {box-sizing:border-box;}
-body {background-color: #edf8ff;}
+
+body {
+  font-family: Calibri, Verdana, Tahoma;
+  background-color: #edf8ff;
+}
 
 main {
   display: flex;
@@ -10,19 +14,38 @@ img {
   width: 100%;
 }
 
+fieldset {
+  border-radius: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"] {
+  margin: 0.4em auto;
+  width: 100%;
+}
+
+input[type="reset"],
+input[type="submit"] {
+  margin: 0.5em auto;
+}
+
 .form-wrapper {
-  width: 30%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.form-container {
-  margin: 20% auto;
-  width: 50%;
+.picklist-container {
+  margin: 10% auto;
+}
+
+.admin-fieldset {
+  margin: 10% auto;
 }
 
 .click-container {
-  width: 70%;
+  width: 60%;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;

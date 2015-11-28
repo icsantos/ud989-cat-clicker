@@ -107,11 +107,11 @@ $(function () {
         });
       var $label = $('<label>').attr('for', cuteAnimal.id).text(cuteAnimal.name);
       var $br = $('<br>');
-      $('#form-container').append($input, $label, $br);
+      $('#picklist-container').append($input, $label, $br);
     },
     
     render: function () {
-      $('#form-container input[type=radio]').on('change', pickListView.showSelected);
+      $('#picklist-container input[type=radio]').on('change', pickListView.showSelected);
     }
   };
 
