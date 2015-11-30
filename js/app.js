@@ -65,6 +65,7 @@ $(function() {
       model.setSelected(id);
       var cuteAnimal = model.kittens[model.selected];
       clickCounterView.render(cuteAnimal);
+      clickCounterView.setEventHandler(cuteAnimal);
       if (adminView.buttonState === 'hide') {
         adminView.buttonState = 'show';
         adminView.render();
@@ -74,7 +75,7 @@ $(function() {
 
     updateSelected: function() {
       model.kittens[model.selected].name = adminView.fields.name.val();
-      model.kittens[model.selected].imgurl = adminView.fields.imgurl.val();
+      model.kittens[model.selected].sprite = adminView.fields.imgurl.val();
       model.kittens[model.selected].clicks = adminView.fields.clicks.val();
 
       var cuteAnimal = model.kittens[model.selected];
@@ -172,6 +173,9 @@ $(function() {
 
     render: function(cuteAnimal) {
       $('.click-container').html(cuteAnimal.html);
+    },
+
+    setEventHandler: function(cuteAnimal) {
       $('.img-animal#' + cuteAnimal.id).on('click', function() {
         var clicks = controller.updateClicks();
         $('.click-counter#' + cuteAnimal.id).text(clicks);

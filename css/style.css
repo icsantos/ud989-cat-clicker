@@ -7,7 +7,7 @@ body {
 
 main {
   display: flex;
-  width: 80%
+  width: 100%
 }
 
 img {
@@ -37,7 +37,11 @@ input[type="submit"] {
 }
 
 .picklist-container {
-  margin: 10% auto;
+  margin: 0 0 10% 2%;
+}
+
+.admin-container {
+  margin: 0 0 0 2%;
 }
 
 .admin-fieldset {
@@ -45,6 +49,7 @@ input[type="submit"] {
 }
 
 .click-container {
+  margin: 0 auto;
   width: 60%;
   font-size: 1.2em;
   font-weight: bold;
