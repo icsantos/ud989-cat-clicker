@@ -81,6 +81,7 @@ $(function() {
       var cuteAnimal = model.kittens[model.selected];
       model.kittens[model.selected].html = clickCounterView.init(cuteAnimal);
       clickCounterView.render(cuteAnimal);
+      pickListView.updateLabel(cuteAnimal);
     },
 
     resetFields: function() {
@@ -95,11 +96,6 @@ $(function() {
   };
 
   var pickListView = {
-    showSelected: function() {
-      var id = $('input[name="animal"]:checked').val();
-      controller.showSelected(id);
-    },
-
     init: function(cuteAnimal) {
       var $input = $('<input>').attr({
           'type': 'radio',
@@ -114,6 +110,15 @@ $(function() {
 
     render: function() {
       $('#picklist-container input[type=radio]').on('change', pickListView.showSelected);
+    },
+
+    showSelected: function() {
+      var id = $('input[name="animal"]:checked').val();
+      controller.showSelected(id);
+    },
+
+    updateLabel: function(cuteAnimal) {
+      $('label[for="' + cuteAnimal.id + '"]').text(cuteAnimal.name);
     }
   };
 
