@@ -135,6 +135,7 @@ $(function() {
     init: function() {
       adminView.button.hide();
       adminView.fieldset.hide();
+      adminView.setEventHandlers();
     },
 
     render: function() {
@@ -142,11 +143,21 @@ $(function() {
       $(adminView.button).on('click', function() {
         $(adminView.fieldset).toggle('fast');
       });
+    },
+
+    setEventHandlers: function() {
+      $('#admin-container').bind('keypress', function (e) {
+          if (e.keyCode == 13) {
+            return false;
+          }
+      });
       $('#admin-container').on('submit', function(event) {
+        $(adminView.button).click();
         controller.updateSelected();
         event.preventDefault();
       });
       $('#admin-container').on('reset', function(event) {
+        $(adminView.button).click();
         controller.resetFields();
         event.preventDefault();
       });
@@ -156,7 +167,7 @@ $(function() {
       $(adminView.fields.name).val(cuteAnimal.name);
       $(adminView.fields.imgurl).val(cuteAnimal.sprite);
       $(adminView.fields.clicks).val(cuteAnimal.clicks);
-    },
+    }
   };
 
   var clickCounterView = {
